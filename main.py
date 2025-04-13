@@ -1,7 +1,6 @@
 import time
 import random
 def Binarizador(number):
-  """ inicio = time.time() """
   Binarios = []
   NumeroInicial = number
   Numero = NumeroInicial
@@ -16,12 +15,9 @@ def Binarizador(number):
       break
   
   Binarios.reverse()
-  """ Binarios = "".join(str(n) for n in Binarios) """
 
 
   return (Binarios)
-  """ fin = time.time()
-  print("El programa tardo: ", fin-inicio, "en finalizar") """
 
 
 
@@ -40,6 +36,9 @@ def automan():
   f.write("*****************")
   f.write("\n")
   while iteraciones < 8:
+    activos = 0
+    fallas = 0
+    alertas = []
     f.write("Prueba Numero: ")
     f.write(str(iteraciones))
     f.write("\n")
@@ -51,16 +50,11 @@ def automan():
     f.write("El binario es: ")
     f.write(str(binario))
     f.write("\n")
-    """ if len(binario) < 5:
-      print("Ajustando Binario")
-      for i in range(1, 4):
-        binario.append(0)
-      print("Nuevo Binario") """
 
     for i in range(0, len(binario)):
-      alertas = []
-      fallas = 0
-      activos = 0
+      actitud = "inactivo"
+      print("************")
+      print("Inciando Pruebas del sensor: ", i)
       f.write("Iniciando pruebas de sensor: ")
       f.write(str(i))
       f.write("\n")
@@ -82,18 +76,26 @@ def automan():
         fallas = fallas + 1
         fallasG = fallasG + 1
         f.write("\n")
+      print("Sensor actual: ", i)
       f.write("Sensor actual: ")
       f.write(str(i))
       f.write("\n")
+      if binario[i] == 1:
+        actitud = "activo"
+        print("Estado del sensor actual: ", actitud)
+      else:
+        print("Estado del sensor actual: ", actitud)
       f.write("Estado del sensor actual: ")
       f.write(str(binario[i]))
       f.write("\n")
+      print("************")
       if binario[i] == 1:
         activos = activos + 1
 
       vez = i
 
     iteraciones = iteraciones + 1
+    print("Numero de sensores activos durante la prueba: ", activos)
     f.write("Sensores activos durante prueba: ")
     f.write(str(activos))
     f.write("\n")
@@ -120,4 +122,6 @@ def automan():
   f.write("\n")  
   f.write("\n")  
   f.close()
+  print("Gracias por usar nuestro tester")
+  print("Vea el archivo Log para ver resultados y fallas")
 automan()
